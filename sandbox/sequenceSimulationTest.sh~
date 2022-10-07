@@ -1,0 +1,11 @@
+#!/bin/bash
+
+
+files=`ls *`
+
+for f in $files; do
+    echo $f
+done
+
+~/phyloApps/Seq-Gen-1.3.4/source/seq-gen -m HKY -t 2 -l 13000 -s 0.0004 seqGenTesting.tree -of > simulatedAlingment.fasta
+
