@@ -10,6 +10,6 @@
 	- 6. estimate trees 4.1 and 4.2 ----> **shell command**
 	- 7. for all trees calculate: number of imports | tmrca of first human import | tmrca of tree ---> **Rscript invoking dendropy for master tree. Can be done posthoc** 
 
-  Potential changes:
+  Potential implementations:
   	- sample migration rate from animal[1] to human[2] from U[a, b] -> MIGRATE ----> **python script 1**
     - consider merging removed and sampled compartments, because we will do sampling posthoc.
