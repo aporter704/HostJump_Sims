@@ -1,5 +1,6 @@
 # Species jump project and to do list:
 
+### Also check to do list on /sandbox
 - workflow example for sars-cov-2:
 	- make xml and name it something like REFID_2host_m12_MIGRATE.xml
 	- run xml above to generate nexus tree file and json trajectories
