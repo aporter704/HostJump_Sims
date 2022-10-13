@@ -1,17 +1,18 @@
 <!-- Example of a two deme system with infection within demes (branching), migration 
     and removal and sampling rates speciic to each deme.
 -->
-<beast version='2.0' namespace='master:master.model:master.steppers:master.conditions:master.postprocessors:master.outputs'>
+<!--beast version='2.0' namespace='master:master.model:master.steppers:master.conditions:master.postprocessors:master.outputs'>
     <run spec='InheritanceEnsemble' samplePopulationSizes="true"
 	 nTraj='100'
-         verbosity='3' simulationTime="10">
+         verbosity='3' simulationTime="1.5"-->
 
-<!--beast version="2.0" namespace="master:master.model:master.steppers:master.conditions:master.postprocessors:master.outputs">
+<beast version="2.0" namespace="master:master.model:master.steppers:master.conditions:master.postprocessors:master.outputs">
     <run spec="InheritanceTrajectory" samplePopulationSizes="true"
-	 verbosity="3" simulationTime="5"-->
+	 verbosity="3" simulationTime="2">
 
         <model spec="Model" id="model">
-            <populationType spec="PopulationType" typeName="I" id="I" dim="2"/> <!-- Infected population with two demes (e.g. aninal and human)-->
+            <populationType spec="PopulationType" typeName="I0" id="I0" dim="1"/> <!-- Infected population with two demes (e.g. aninal and human)-->
+            <populationType spec="PopulationType" typeName="I1" id="I1" dim="1"/>
             <populationType spec="PopulationType" typeName="R" id="R" dim="2"/> <!-- Removed population with two demes -->
             <populationType spec="PopulationType" typeName="I_sampled0" id="I_sampled0" dim="1"/> <!-- sampled population with two demes-->
             <populationType spec="PopulationType" typeName="I_sampled1" id="I_sampled1" dim="1"/>
@@ -19,56 +20,55 @@
 	Migration rate is x times more than become uninfectious rate
 	Branching within deme is x times more than uninfectious rate
 	All rates are 1/time -->
-
-
-
         <!-- Strictly speaking infection corresponds to branching events
          and here it only happens within each deme -->
-	    <reactionGroup spec="ReactionGroup" reactionGroupName="Infection"> 
-            <reaction spec="Reaction" reactionName="Birth1" rate="5">
-                I[0] -> I[0] + I[0]
+	    <reactionGroup spec="ReactionGroup" reactionGroupName="Infection0"> 
+            <reaction spec="Reaction" reactionName="Birth0" rate="5">
+                I0 -> I0 + I0
             </reaction>
-	        <reaction spec="Reaction" reactionName="Birth2" rate="5">
-                I[1] -> I[1] + I[1]
+        </reactionGroup>
+        <reactionGroup spec="ReactionGroup" reactionGroupName="Infection1"> 
+	        <reaction spec="Reaction" reactionName="Birth1" rate="5">
+                I1 -> I1 + I1
             </reaction>
 	    </reactionGroup>
 	    <!-- Migration here is a type change, but no branching. For example, animal infecting human or human infecting animal -->
 	    <reactionGroup spec="ReactionGroup" reactionGroupName="Migration"> 
-	        <reaction spec="Reaction" reactionName="Migration0to1" rate="2.5">
-			    I[0] -> I[1]
+	        <reaction spec="Reaction" reactionName="Migration0to1" rate="5">
+			    I0 -> I1
 	        </reaction>
 	        <reaction spec="Reaction" reactionName="Migration1to0" rate="2.5">
-			    I[1] -> I[0]
+			    I1 -> I0
 	        </reaction>
 	    </reactionGroup>
 	    
         <reactionGroup spec="ReactionGroup" reactionGroupName="Removed">
-            <reaction spec="Reaction" reactionName="Death0" rate="0.25">
-                I[0] -> R[0]
+            <reaction spec="Reaction" reactionName="Death0" rate="0.025">
+                I0 -> R[0]
             </reaction>
-            <reaction spec="Reaction" reactionName="Death1" rate="0.45">
-                I[1] -> R[1]
+            <reaction spec="Reaction" reactionName="Death1" rate="0.025">
+                I1 -> R[1]
             </reaction>
         </reactionGroup>
 	    
     <reactionGroup spec="ReactionGroup" reactionGroupName="Sampling0">
-        <reaction spec="Reaction" reactionName="Sampling0_internal" rate ="0.25">
-            I[0] -> I_sampled0
+        <reaction spec="Reaction" reactionName="Sampling0_internal" rate ="0.05">
+            I0 -> I_sampled0
         </reaction>
     </reactionGroup>
     <reactionGroup spec="ReactionGroup" reactionGroupName="Sampling1">
-        <reaction spec="Reaction" reactionName="Sampling1_internal" rate ="0.25">
-            I[1] -> I_sampled1
+        <reaction spec="Reaction" reactionName="Sampling1_internal" rate ="0.9">
+            I1 -> I_sampled1
         </reaction>
     </reactionGroup>
     </model>
 
     <initialState spec="InitState">
 	    <lineageSeed spec="Individual">
-	        <population spec="Population" type="@I" location="0"/>
+	        <population spec="Population" type="@I0"/>
 	    </lineageSeed>
         <populationSize spec="PopulationSize" size="0">
-            <population spec="Population" type="@I" location="1"/>
+            <population spec="Population" type="@I1"/>
         </populationSize>
         <populationSize spec="PopulationSize" size="0">
             <population spec="Population" type="@R" location="0"/>
@@ -85,17 +85,16 @@
 
     </initialState>
 
-	<lineageEndCondition spec="LineageEndCondition" nLineages="1000" isRejection="false">
-	  <population spec="Population" type="@I" location="0"/>
-	  <population spec="Population" type="@I" location="1"/>
+	<lineageEndCondition spec="LineageEndCondition" nLineages="3" isRejection="true">
+	  <population spec="Population" type="@I_sampled1"/>
 	</lineageEndCondition>
 	
 	<inheritancePostProcessor spec="LineageFilter"
 				  reactionName="NONE" discard="true"/>
-	<inheritancePostProcessor spec="LineageFilter"
+	<!--inheritancePostProcessor spec="LineageFilter"
 				  reactionName="Sampling0" discard="true"/>
     <inheritancePostProcessor spec="LineageFilter"
-				  reactionName="Removed" discard="true"/>
+				  reactionName="Removed" discard="true"/-->
 
 
 	<output spec="NexusOutput" fileName="SARS_lowMinkSample.nexus.tree"/>
