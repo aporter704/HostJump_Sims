@@ -5,6 +5,7 @@
 	- make xml and name it something like REFID_2host_m12_MIGRATE.xml
 	- run xml above to generate nexus tree file and json trajectories
 	- export tree with locations annotated in tip labels
+	- IMPORTANT TODO: collapse singles before exporting trees!
 	- **workflow up to here complete**
 	- simulate sequence data...
 	- prune tips with removed reaction irrespective of location and export tree (constant sampling)
