@@ -7,7 +7,7 @@
 	- export tree with locations annotated in tip labels
 	- IMPORTANT TODOs:
 		- collapse singles before exporting trees!
-
+		- add sampling times to tip labels
 	- **workflow up to here complete**
 	- simulate sequence data...
 	- prune tips with removed reaction irrespective of location and export tree (constant sampling)
