@@ -1,0 +1,335 @@
+IQ-TREE multicore version 2.1.3 COVID-edition for Linux 64-bit built Apr 21 2021
+Developed by Bui Quang Minh, James Barbetti, Nguyen Lam Tung,
+Olga Chernomor, Heiko Schmidt, Dominik Schrempf, Michael Woodhams.
+
+Host:    pop-os (AVX2, FMA3, 15 GB RAM)
+Command: /home/sebastiand/phyloApps/iqtree-2.1.3-Linux/bin/iqtree2 -m HKY+G -s testout.fasta
+Seed:    389303 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Fri Oct 14 14:59:28 2022
+Kernel:  AVX+FMA - 1 threads (8 CPU cores detected)
+
+HINT: Use -nt option to specify number of threads because your CPU has 8 cores!
+HINT: -nt AUTO will automatically determine the best number of threads to use.
+
+Reading alignment file testout.fasta ... Fasta format detected
+Alignment most likely contains DNA/RNA sequences
+Alignment has 119 sequences with 19000 columns, 842 distinct patterns
+455 parsimony-informative, 796 singleton sites, 17749 constant sites
+WARNING: Some sequence names are changed as follows:
+'1_type0' -> _1_type0_
+'2_type0' -> _2_type0_
+'3_type0' -> _3_type0_
+'4_type0' -> _4_type0_
+'5_type0' -> _5_type0_
+'6_type0' -> _6_type0_
+'7_type0' -> _7_type0_
+'8_type0' -> _8_type0_
+'9_type0' -> _9_type0_
+'10_type0' -> _10_type0_
+'11_type0' -> _11_type0_
+'12_type0' -> _12_type0_
+'13_type0' -> _13_type0_
+'14_type1' -> _14_type1_
+'15_type0' -> _15_type0_
+'16_type0' -> _16_type0_
+'17_type0' -> _17_type0_
+'18_type1' -> _18_type1_
+'19_type1' -> _19_type1_
+'20_type1' -> _20_type1_
+'21_type1' -> _21_type1_
+'22_type1' -> _22_type1_
+'23_type0' -> _23_type0_
+'24_type0' -> _24_type0_
+'25_type1' -> _25_type1_
+'26_type1' -> _26_type1_
+'27_type1' -> _27_type1_
+'28_type0' -> _28_type0_
+'29_type0' -> _29_type0_
+'30_type0' -> _30_type0_
+'31_type0' -> _31_type0_
+'32_type0' -> _32_type0_
+'33_type0' -> _33_type0_
+'34_type0' -> _34_type0_
+'35_type1' -> _35_type1_
+'36_type0' -> _36_type0_
+'37_type0' -> _37_type0_
+'38_type0' -> _38_type0_
+'39_type0' -> _39_type0_
+'40_type0' -> _40_type0_
+'41_type0' -> _41_type0_
+'42_type0' -> _42_type0_
+'43_type1' -> _43_type1_
+'44_type0' -> _44_type0_
+'45_type0' -> _45_type0_
+'46_type0' -> _46_type0_
+'47_type0' -> _47_type0_
+'48_type0' -> _48_type0_
+'49_type0' -> _49_type0_
+'50_type0' -> _50_type0_
+'51_type0' -> _51_type0_
+'52_type0' -> _52_type0_
+'53_type0' -> _53_type0_
+'54_type0' -> _54_type0_
+'55_type0' -> _55_type0_
+'56_type0' -> _56_type0_
+'57_type0' -> _57_type0_
+'58_type0' -> _58_type0_
+'59_type0' -> _59_type0_
+'60_type0' -> _60_type0_
+'61_type0' -> _61_type0_
+'62_type0' -> _62_type0_
+'63_type0' -> _63_type0_
+'64_type0' -> _64_type0_
+'65_type0' -> _65_type0_
+'66_type0' -> _66_type0_
+'67_type0' -> _67_type0_
+'68_type0' -> _68_type0_
+'69_type0' -> _69_type0_
+'70_type1' -> _70_type1_
+'71_type0' -> _71_type0_
+'72_type0' -> _72_type0_
+'73_type0' -> _73_type0_
+'74_type0' -> _74_type0_
+'75_type0' -> _75_type0_
+'76_type0' -> _76_type0_
+'77_type0' -> _77_type0_
+'78_type0' -> _78_type0_
+'79_type1' -> _79_type1_
+'80_type0' -> _80_type0_
+'81_type0' -> _81_type0_
+'82_type0' -> _82_type0_
+'83_type0' -> _83_type0_
+'84_type0' -> _84_type0_
+'85_type0' -> _85_type0_
+'86_type0' -> _86_type0_
+'87_type0' -> _87_type0_
+'88_type0' -> _88_type0_
+'89_type0' -> _89_type0_
+'90_type0' -> _90_type0_
+'91_type1' -> _91_type1_
+'92_type0' -> _92_type0_
+'93_type0' -> _93_type0_
+'94_type0' -> _94_type0_
+'95_type0' -> _95_type0_
+'96_type0' -> _96_type0_
+'97_type0' -> _97_type0_
+'98_type0' -> _98_type0_
+'99_type0' -> _99_type0_
+'100_type0' -> _100_type0_
+'101_type0' -> _101_type0_
+'102_type0' -> _102_type0_
+'103_type0' -> _103_type0_
+'104_type0' -> _104_type0_
+'105_type1' -> _105_type1_
+'106_type0' -> _106_type0_
+'107_type0' -> _107_type0_
+'108_type0' -> _108_type0_
+'109_type0' -> _109_type0_
+'110_type0' -> _110_type0_
+'111_type0' -> _111_type0_
+'112_type0' -> _112_type0_
+'113_type0' -> _113_type0_
+'114_type0' -> _114_type0_
+'115_type1' -> _115_type1_
+'116_type0' -> _116_type0_
+'117_type0' -> _117_type0_
+'118_type0' -> _118_type0_
+'119_type1' -> _119_type1_
+
+             Gap/Ambiguity  Composition  p-value
+   1  _1_type0_      0.00%    passed    100.00%
+   2  _2_type0_      0.00%    passed    100.00%
+   3  _3_type0_      0.00%    passed     99.97%
+   4  _4_type0_      0.00%    passed     99.98%
+   5  _5_type0_      0.00%    passed     99.98%
+   6  _6_type0_      0.00%    passed     99.88%
+   7  _7_type0_      0.00%    passed     99.86%
+   8  _8_type0_      0.00%    passed     99.91%
+   9  _9_type0_      0.00%    passed     99.61%
+  10  _10_type0_     0.00%    passed     99.90%
+  11  _11_type0_     0.00%    passed     99.97%
+  12  _12_type0_     0.00%    passed     99.94%
+  13  _13_type0_     0.00%    passed     99.85%
+  14  _14_type1_     0.00%    passed     99.95%
+  15  _15_type0_     0.00%    passed     99.97%
+  16  _16_type0_     0.00%    passed     99.85%
+  17  _17_type0_     0.00%    passed     99.74%
+  18  _18_type1_     0.00%    passed     99.99%
+  19  _19_type1_     0.00%    passed     99.98%
+  20  _20_type1_     0.00%    passed     99.88%
+  21  _21_type1_     0.00%    passed     99.99%
+  22  _22_type1_     0.00%    passed    100.00%
+  23  _23_type0_     0.00%    passed     99.88%
+  24  _24_type0_     0.00%    passed     99.99%
+  25  _25_type1_     0.00%    passed     99.99%
+  26  _26_type1_     0.00%    passed    100.00%
+  27  _27_type1_     0.00%    passed     99.93%
+  28  _28_type0_     0.00%    passed     99.99%
+  29  _29_type0_     0.00%    passed     99.98%
+  30  _30_type0_     0.00%    passed     99.99%
+  31  _31_type0_     0.00%    passed    100.00%
+  32  _32_type0_     0.00%    passed    100.00%
+  33  _33_type0_     0.00%    passed     99.97%
+  34  _34_type0_     0.00%    passed     99.93%
+  35  _35_type1_     0.00%    passed     99.98%
+  36  _36_type0_     0.00%    passed     99.95%
+  37  _37_type0_     0.00%    passed     99.98%
+  38  _38_type0_     0.00%    passed     99.98%
+  39  _39_type0_     0.00%    passed     99.98%
+  40  _40_type0_     0.00%    passed     99.89%
+  41  _41_type0_     0.00%    passed     99.98%
+  42  _42_type0_     0.00%    passed    100.00%
+  43  _43_type1_     0.00%    passed    100.00%
+  44  _44_type0_     0.00%    passed     99.98%
+  45  _45_type0_     0.00%    passed     99.99%
+  46  _46_type0_     0.00%    passed     99.99%
+  47  _47_type0_     0.00%    passed    100.00%
+  48  _48_type0_     0.00%    passed     99.97%
+  49  _49_type0_     0.00%    passed     99.99%
+  50  _50_type0_     0.00%    passed     99.99%
+  51  _51_type0_     0.00%    passed    100.00%
+  52  _52_type0_     0.00%    passed    100.00%
+  53  _53_type0_     0.00%    passed    100.00%
+  54  _54_type0_     0.00%    passed     99.96%
+  55  _55_type0_     0.00%    passed     99.98%
+  56  _56_type0_     0.00%    passed     99.99%
+  57  _57_type0_     0.00%    passed     99.80%
+  58  _58_type0_     0.00%    passed     99.96%
+  59  _59_type0_     0.00%    passed     99.98%
+  60  _60_type0_     0.00%    passed     99.99%
+  61  _61_type0_     0.00%    passed    100.00%
+  62  _62_type0_     0.00%    passed    100.00%
+  63  _63_type0_     0.00%    passed    100.00%
+  64  _64_type0_     0.00%    passed    100.00%
+  65  _65_type0_     0.00%    passed    100.00%
+  66  _66_type0_     0.00%    passed     99.98%
+  67  _67_type0_     0.00%    passed     99.99%
+  68  _68_type0_     0.00%    passed    100.00%
+  69  _69_type0_     0.00%    passed     99.94%
+  70  _70_type1_     0.00%    passed    100.00%
+  71  _71_type0_     0.00%    passed     99.99%
+  72  _72_type0_     0.00%    passed    100.00%
+  73  _73_type0_     0.00%    passed     99.86%
+  74  _74_type0_     0.00%    passed     99.94%
+  75  _75_type0_     0.00%    passed     99.99%
+  76  _76_type0_     0.00%    passed     99.87%
+  77  _77_type0_     0.00%    passed     99.98%
+  78  _78_type0_     0.00%    passed    100.00%
+  79  _79_type1_     0.00%    passed    100.00%
+  80  _80_type0_     0.00%    passed     99.98%
+  81  _81_type0_     0.00%    passed     99.97%
+  82  _82_type0_     0.00%    passed     99.94%
+  83  _83_type0_     0.00%    passed     99.99%
+  84  _84_type0_     0.00%    passed     99.99%
+  85  _85_type0_     0.00%    passed    100.00%
+  86  _86_type0_     0.00%    passed     99.94%
+  87  _87_type0_     0.00%    passed     99.99%
+  88  _88_type0_     0.00%    passed     99.97%
+  89  _89_type0_     0.00%    passed    100.00%
+  90  _90_type0_     0.00%    passed     99.98%
+  91  _91_type1_     0.00%    passed    100.00%
+  92  _92_type0_     0.00%    passed     99.97%
+  93  _93_type0_     0.00%    passed     99.93%
+  94  _94_type0_     0.00%    passed     99.99%
+  95  _95_type0_     0.00%    passed     99.96%
+  96  _96_type0_     0.00%    passed    100.00%
+  97  _97_type0_     0.00%    passed     99.98%
+  98  _98_type0_     0.00%    passed     99.98%
+  99  _99_type0_     0.00%    passed     99.94%
+ 100  _100_type0_    0.00%    passed    100.00%
+ 101  _101_type0_    0.00%    passed     99.98%
+ 102  _102_type0_    0.00%    passed    100.00%
+ 103  _103_type0_    0.00%    passed     99.93%
+ 104  _104_type0_    0.00%    passed     99.98%
+ 105  _105_type1_    0.00%    passed     99.99%
+ 106  _106_type0_    0.00%    passed     99.99%
+ 107  _107_type0_    0.00%    passed     99.98%
+ 108  _108_type0_    0.00%    passed     99.96%
+ 109  _109_type0_    0.00%    passed     99.99%
+ 110  _110_type0_    0.00%    passed     99.99%
+ 111  _111_type0_    0.00%    passed     99.99%
+ 112  _112_type0_    0.00%    passed    100.00%
+ 113  _113_type0_    0.00%    passed     99.98%
+ 114  _114_type0_    0.00%    passed     99.91%
+ 115  _115_type1_    0.00%    passed     99.96%
+ 116  _116_type0_    0.00%    passed     99.99%
+ 117  _117_type0_    0.00%    passed     99.94%
+ 118  _118_type0_    0.00%    passed     99.84%
+ 119  _119_type1_    0.00%    passed     99.98%
+****  TOTAL          0.00%  0 sequences failed composition chi2 test (p-value<5%; df=3)
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.011 seconds
+
+NOTE: 13 MB RAM (0 GB) is required!
+Estimate model parameters (epsilon = 0.100)
+1. Initial log-likelihood: -39122.458
+2. Current log-likelihood: -38921.338
+3. Current log-likelihood: -38822.301
+Optimal log-likelihood: -38822.301
+Rate parameters:  A-C: 1.00000  A-G: 3.95670  A-T: 1.00000  C-G: 1.00000  C-T: 3.95670  G-T: 1.00000
+Base frequencies:  A: 0.253  C: 0.248  G: 0.255  T: 0.245
+Gamma shape alpha: 5.367
+Parameters optimization took 3 rounds (0.343 sec)
+Computing ML distances based on estimated model parameters...
+Computing ML distances took 0.093324 sec (of wall-clock time) 0.093316 sec(of CPU time)
+Computing RapidNJ tree took 0.000904 sec (of wall-clock time) 0.000904 sec (of CPU time)
+Log-likelihood of RapidNJ tree: -38839.695
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 0.898 second
+Computing log-likelihood of 98 initial trees ... 1.526 seconds
+Current best score: -38822.284
+
+Do NNI search on 20 best initial trees
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 1: -38822.284
+BETTER TREE FOUND at iteration 2: -38822.284
+BETTER TREE FOUND at iteration 5: -38822.284
+Iteration 10 / LogL: -38822.284 / Time: 0h:0m:3s
+BETTER TREE FOUND at iteration 12: -38822.284
+Iteration 20 / LogL: -38822.284 / Time: 0h:0m:4s
+Finish initializing candidate tree set (14)
+Current best tree score: -38822.284 / CPU time: 4.020
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Iteration 30 / LogL: -38822.533 / Time: 0h:0m:7s (0h:0m:20s left)
+Iteration 40 / LogL: -38899.070 / Time: 0h:0m:10s (0h:0m:18s left)
+Iteration 50 / LogL: -38850.939 / Time: 0h:0m:13s (0h:0m:16s left)
+Iteration 60 / LogL: -38834.712 / Time: 0h:0m:15s (0h:0m:13s left)
+Iteration 70 / LogL: -38822.442 / Time: 0h:0m:18s (0h:0m:11s left)
+Iteration 80 / LogL: -38822.424 / Time: 0h:0m:21s (0h:0m:8s left)
+Iteration 90 / LogL: -38822.399 / Time: 0h:0m:23s (0h:0m:5s left)
+Iteration 100 / LogL: -38822.474 / Time: 0h:0m:26s (0h:0m:3s left)
+Iteration 110 / LogL: -38822.564 / Time: 0h:0m:29s (0h:0m:0s left)
+TREE SEARCH COMPLETED AFTER 113 ITERATIONS / Time: 0h:0m:29s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -38822.284
+Optimal log-likelihood: -38822.284
+Rate parameters:  A-C: 1.00000  A-G: 3.95496  A-T: 1.00000  C-G: 1.00000  C-T: 3.95496  G-T: 1.00000
+Base frequencies:  A: 0.253  C: 0.248  G: 0.255  T: 0.245
+Gamma shape alpha: 5.367
+Parameters optimization took 1 rounds (0.075 sec)
+BEST SCORE FOUND : -38822.284
+Total tree length: 0.068
+
+Total number of iterations: 113
+CPU time used for tree search: 29.577 sec (0h:0m:29s)
+Wall-clock time used for tree search: 29.454 sec (0h:0m:29s)
+Total CPU time used: 30.245 sec (0h:0m:30s)
+Total wall-clock time used: 30.064 sec (0h:0m:30s)
+
+Analysis results written to: 
+  IQ-TREE report:                testout.fasta.iqtree
+  Maximum-likelihood tree:       testout.fasta.treefile
+  Likelihood distances:          testout.fasta.mldist
+  Screen log file:               testout.fasta.log
+
+Date and Time: Fri Oct 14 14:59:58 2022

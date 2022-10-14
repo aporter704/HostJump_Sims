@@ -4,8 +4,8 @@ import os, sys, re
 
 replicates = [i for i in range(5)] # number of replicates to run
 
-template = 'MPXV_speciesjump_rare.xml' # Template xml
-prefix = 'set1_MPXV_rare_r' # the prefix we want to use
+template = 'MPXV_speciesjump_common.xml' # Template xml
+prefix = 'set1_MPXV_common_r' # the prefix we want to use
 
 
 for i in replicates[:3]:

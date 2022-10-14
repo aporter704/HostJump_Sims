@@ -20,11 +20,16 @@ psamp_after_first_human = 0.8
 
 tree = dp.Tree.get_from_path(tree_file_name, 'nexus')
 
+# Include metadata in taxon labels. label_typeX_date. Note that date is forwards in time
+taxon_translation_list = []
 for node in tree.postorder_node_iter():
     if node.is_leaf():
-        location =  node.annotations.get_value('location')
-        node.taxon.label = node.taxon.label + '_type' + location
-
+        location = node.annotations.get_value('location')
+        new_name = node.taxon.label + '_type' + location + '_' + str(round(node.distance_from_root(), 2))
+        taxon_translation_list.append([node.taxon.label, new_name])
+        node.taxon.label = new_name
+taxon_translation_list = pd.DataFrame(taxon_translation_list)
+taxon_translation_list.columns = ['old_name', 'new_name']
 
 # - Get actual number of migration events and their ages
 migration_events = []
@@ -47,19 +52,17 @@ age_of_first_branching = max([i.distance_from_tip() for i in tree.postorder_inte
 # - Export newick tree with metadata in name and no internal nodes
 file_name_with_ground_truth = re.sub('[.].+', '', tree_file_name) + '_nMig' + str(num_migration_into_human) + '_migAge' + str(round(age_first_migration, 2)) + '_splitAge' + str(round(age_of_first_branching, 2))
 
-tree.write_to_path(file_name_with_ground_truth + '.newick.tree', 'newick')
-print('Newick tree exported to:'+file_name_with_ground_truth + '.newick.tree', 'newick')
+tree_collapsed = tree.get_from_path(re.sub('nexus', 'newick', tree_file_name), 'newick')
+for node in tree_collapsed.postorder_node_iter():
+    if node.is_leaf():
+        temp =  taxon_translation_list.loc[taxon_translation_list.old_name == node.taxon.label, 'new_name']
+        node.taxon.label = temp.values[0]
+
+tree.write_to_path(file_name_with_ground_truth + '.nexus.tree', 'nexus')
+print('Nexus tree exported to:'+file_name_with_ground_truth + '.nexus.tree')
+
+tree_collapsed.write_to_path(file_name_with_ground_truth + '.newick.tree', 'newick')
+print('Newick tree exported to:'+file_name_with_ground_truth + '.newick.tree')
+
 print('Number of migration events into humans: ' +  str(num_migration_into_human))
 
-# # Workflow testing complete up to here
-# 1. ~~export tree with the data above.~~ 
-# 2. prune tips with removed reaction and location 0. These are animals 
-# 2.1 Prune tips with removed reaction and location 1. Thesea are humans
-# 2.3 prune nodes that are not leaves and which have a single descendants (migrations)
-# 2.4 Calculate number of imports, date of first import, and tmrca of sampled tree
-# 2.5 Export tree in nexus. This is the 'sampled' tree
-# 
-# 3 take initial tree and remove only location 1 from the removed reaction
-# 3.1 prune all tips with location 0 prior to the first location 1
-# 2.5 Export tree in nexus. This is the 'opportunistically sampled' tree
-# 

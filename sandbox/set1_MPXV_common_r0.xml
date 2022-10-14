@@ -4,7 +4,7 @@
 
 <beast version="2.0" namespace="master:master.model:master.steppers:master.conditions:master.postprocessors:master.outputs">
     <run spec="InheritanceTrajectory" samplePopulationSizes="true"
-	 verbosity="1">
+	 verbosity="1" simulationTime="5">
 
 <!--MPXV human and reservoir animal population, outbreaks occur every decade (longer sim time!)-->
 
@@ -95,6 +95,7 @@ but has jumped the species barrier rarely (roughly once every 10 infections) and
 	<inheritancePostProcessor spec="LineageFilter"
 				  reactionName="NONE" discard="true"/>
 	<output spec="NexusOutput" fileName="set1_MPXV_common_r0.nexus.tree"/>
+    <output spec="NewickOutput" fileName="set1_MPXV_common_r0.newick.tree" collapseSingleChildNodes="true"/>
 	<output spec="JsonOutput" fileName="set1_MPXV_common_r0.json"/>
     </run>
 </beast>

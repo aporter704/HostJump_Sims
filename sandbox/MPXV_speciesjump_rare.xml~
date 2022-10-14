@@ -4,7 +4,7 @@
 
 <beast version="2.0" namespace="master:master.model:master.steppers:master.conditions:master.postprocessors:master.outputs">
     <run spec="InheritanceTrajectory" samplePopulationSizes="true"
-	 verbosity="1">
+	 verbosity="3" simulationTime="10">
 
 <!--MPXV human and reservoir animal population, outbreaks occur every decade (longer sim time!)-->
 
@@ -19,7 +19,7 @@
 	All rates are 1/time -->
 
 <!--MPXV spreads rapidly in the reservior population, and to a slightly lesser degree the human population, 
-but has jumped the species barrier rarely (roughly once every 10 infections) and has rare spill-back (no evidence thus far)-->
+but has jumped the species barrier rarely (roughly once every 50 infections) and has rare spill-back (no evidence thus far)-->
 
         <!-- Strictly speaking infection corresponds to branching events
          and here it only happens within each deme -->
@@ -33,7 +33,7 @@ but has jumped the species barrier rarely (roughly once every 10 infections) and
 	    </reactionGroup>
 	    <!-- Migration here is a type change, but no branching. For example, animal infecting human or human infecting animal -->
 	    <reactionGroup spec="ReactionGroup" reactionGroupName="Migration"> 
-	        <reaction spec="Reaction" reactionName="Migration0to1" rate="0.5">
+	        <reaction spec="Reaction" reactionName="Migration0to1" rate="0.25">
 			    I[0] -> I[1]
 	        </reaction>
 	        <reaction spec="Reaction" reactionName="Migration1to0" rate="0.1">
@@ -86,15 +86,9 @@ but has jumped the species barrier rarely (roughly once every 10 infections) and
 	  <population spec="Population" type="@I" location="1"/>
 	</lineageEndCondition>
 	
-
-	<lineageEndCondition spec="LineageEndCondition" nLineages="10" isRejection="true">
-	  <population spec="Population" type="@I_sampled"/>
-	</lineageEndCondition>
-
-
 	<inheritancePostProcessor spec="LineageFilter"
 				  reactionName="NONE" discard="true"/>
-	<output spec="NexusOutput" fileName="set1_MPXV_common_r3.nexus.tree"/>
-	<output spec="JsonOutput" fileName="set1_MPXV_common_r3.json"/>
+	<output spec="NexusOutput" fileName="MPXV_speciesjump_rare.nexus.tree"/>
+	<output spec="JsonOutput" fileName="MPXV_speciesjump_rare.json"/>
     </run>
 </beast>
