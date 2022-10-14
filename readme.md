@@ -5,13 +5,16 @@
 	- make xml and name it something like REFID_2host_m12_MIGRATE.xml
 	- run xml above to generate nexus tree file and json trajectories
 	- export tree with locations annotated in tip labels
-	- IMPORTANT TODO: collapse singles before exporting trees!
+	- IMPORTANT TODOs:
+		- collapse singles before exporting trees!
+
 	- **workflow up to here complete**
 	- simulate sequence data...
 	- prune tips with removed reaction irrespective of location and export tree (constant sampling)
 	- prune tips with removed reaction for location 1 (humans) and all location 0 before first human sample. thereafter prune location 0 with some probability
 	- prune sequence data set accordingly
 	- estimate ml trees in iqtree
+	- fit clock 
 	- **Revise steps below**
 	- prune tips tips with removed reaction location 1?
 	- sample humans[2] with some rate REFID_2host_m12_MIGRATE_2pHUMANSAMPRATE.tree ---> **python script 2**
