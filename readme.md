@@ -9,8 +9,8 @@
 		- ~~collapse singles before exporting trees!~~
 		- ~~add sampling times to tip labels~~
 		- A script to pull putative importation events based on monophyletic groups! 
-	- **workflow up to here complete**
 	- simulate sequence data...
+	**workflow up to here**
 	- prune tips with removed reaction irrespective of location and export tree (constant sampling); use newick tree
 	- prune tips with removed reaction for location 1 (humans) and all location 0 before first human sample. thereafter prune location 0 with some probability; use newick tree
 	- prune sequence data set accordingly
