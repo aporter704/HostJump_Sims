@@ -7,16 +7,27 @@ import re, sys, os
 import pandas as pd
 import argparse
 
+seqGen_path = '~/phyloApps/Seq-Gen-1.3.4/source/seq-gen'
+
 parser = argparse.ArgumentParser()
 parser.add_argument('-t', '--t', help = 'the nexus tree from MASTER with annotations', required = True)
 parser.add_argument('-lh', '--lh', help = 'the location for the human deme', required = True)
+parser.add_argument('-rc', '--rc', help = 'the clock rate in subs/site/time unit', required = True)
+parser.add_argument('-seqGen', '--seqGen', help = 'path to SegGen for simulating sequences', required = True)
+
+# Might not neeed this one if subsampling is done by a different script
 parser.add_argument('-pnh', '--pnh', help = 'the probability of sampling non human cases after first human casea', required = False)
+
 
 args = parser.parse_args()
 
 tree_file_name = args.t
 location_human = args.lh
+clock_rate = args.rc
+seqGen_path = args.seqGen
 psamp_after_first_human = 0.8
+
+
 
 tree = dp.Tree.get_from_path(tree_file_name, 'nexus')
 
@@ -62,7 +73,12 @@ tree.write_to_path(file_name_with_ground_truth + '.nexus.tree', 'nexus')
 print('Nexus tree exported to:'+file_name_with_ground_truth + '.nexus.tree')
 
 tree_collapsed.write_to_path(file_name_with_ground_truth + '.newick.tree', 'newick')
-print('Newick tree exported to:'+file_name_with_ground_truth + '.newick.tree')
+print('Newick tree exported to:' + file_name_with_ground_truth + '.newick.tree')
 
 print('Number of migration events into humans: ' +  str(num_migration_into_human))
 
+print(file_name_with_ground_truth + '.newick.tree')
+print(file_name_with_ground_truth + '.fasta')
+
+# - simulate sequence data on the newick tree
+os.system(seqGen_path + ' -m HKY -t 2 -l 29903 -of -s ' + args.rc + ' < ' + file_name_with_ground_truth + '.newick.tree' ' > ' + file_name_with_ground_truth + '.fasta')
