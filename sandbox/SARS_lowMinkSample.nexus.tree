@@ -1,5 +1,0 @@
-#nexus
-
-Begin trees;
-tree TREE = 1[&type="I0",location="0",reaction="Migration",time=0.25035806026187346]:0.25035806026187346;
-End;

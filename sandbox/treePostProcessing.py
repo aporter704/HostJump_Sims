@@ -39,6 +39,7 @@ for node in tree.postorder_node_iter():
         new_name = node.taxon.label + '_type' + location + '_' + str(round(node.distance_from_root(), 2))
         taxon_translation_list.append([node.taxon.label, new_name])
         node.taxon.label = new_name
+
 taxon_translation_list = pd.DataFrame(taxon_translation_list)
 taxon_translation_list.columns = ['old_name', 'new_name']
 
@@ -63,6 +64,7 @@ age_of_first_branching = max([i.distance_from_tip() for i in tree.postorder_inte
 # - Export newick tree with metadata in name and no internal nodes
 file_name_with_ground_truth = re.sub('[.].+', '', tree_file_name) + '_nMig' + str(num_migration_into_human) + '_migAge' + str(round(age_first_migration, 2)) + '_splitAge' + str(round(age_of_first_branching, 2))
 
+# Check whether the code below is doing anything
 tree_collapsed = tree.get_from_path(re.sub('nexus', 'newick', tree_file_name), 'newick')
 for node in tree_collapsed.postorder_node_iter():
     if node.is_leaf():
@@ -81,4 +83,4 @@ print(file_name_with_ground_truth + '.newick.tree')
 print(file_name_with_ground_truth + '.fasta')
 
 # - simulate sequence data on the newick tree
-os.system(seqGen_path + ' -m HKY -t 2 -l 29903 -of -s ' + args.rc + ' < ' + file_name_with_ground_truth + '.newick.tree' ' > ' + file_name_with_ground_truth + '.fasta')
+os.system(seqGen_path + ' -m HKY -t 2 -l 29903 -of -s ' + clock_rate + ' < ' + file_name_with_ground_truth + '.newick.tree' ' > ' + file_name_with_ground_truth + '.fasta')
