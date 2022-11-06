@@ -32,7 +32,7 @@ monophyletic_nodes = []
 all_imports = []
 visited_tips = []
 for tip in tree.leaf_node_iter():
-    if tip in visited_tips:
+    # if tip in visited_tips:
         continue
     if(re.split('_', tip.taxon.label)[1] == target_type):
         monophyletic_ancestors = []
