@@ -79,6 +79,7 @@ print('Newick tree exported to:' + file_name_with_ground_truth + '.newick.tree')
 
 print('Number of migration events into humans: ' +  str(num_migration_into_human))
 
+print(file_name_with_ground_truth + '.nexus.tree')
 print(file_name_with_ground_truth + '.newick.tree')
 print(file_name_with_ground_truth + '.fasta')
 
