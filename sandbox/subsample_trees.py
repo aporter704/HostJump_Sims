@@ -84,11 +84,11 @@ tips_to_remove = []
 for i in range(tip_ages.shape[0]):
     if tip_ages.date[i] < first_human_case:
         tips_to_remove.append(tip_ages.tip_label[i])
-        print('Prunning '+tip_ages.tip_label[i])
+        print('Prunning (opportunistic)'+tip_ages.tip_label[i])
     elif tip_ages.type[i] != location_human and tip_ages.date[i] >= first_human_case:
         if np.random.binomial(1, non_human_sampling_prop_high) == 0:
             tips_to_remove.append(tip_ages.tip_label[i])
-            print('Prunning '+tip_ages.tip_label[i])
+            print('Prunning  (opportunistic)'+tip_ages.tip_label[i])
             
 tree_opportunistic_sampling = tree.clone(depth = 1)
 tree_opportunistic_sampling.prune_taxa_with_labels(tips_to_remove)
