@@ -1,0 +1,128 @@
+<!-- Example of a two deme system with infection within demes (branching), migration 
+    and removal and sampling rates speciic to each deme.
+-->
+
+<beast version="2.0" namespace="master:master.model:master.steppers:master.conditions:master.postprocessors:master.outputs">
+    <run spec="InheritanceTrajectory" samplePopulationSizes="true"
+	 verbosity="3" simulationTime="10">
+
+<!-- Hendra circulates in the bat reservior population, and can infect horses and humans -->
+
+        <model spec="Model" id="model">
+            <populationType spec="PopulationType" typeName="I" id="I" dim="3"/> <!-- Infected population with three demes (e.g. horse, bat and human)-->
+            <populationType spec="PopulationType" typeName="R" id="R" dim="3"/> <!-- Removed population with three demes -->
+            <populationType spec="PopulationType" typeName="I_sampled" id="I_sampled" dim="3"/> <!-- sampled population with three demes-->
+
+<!-- We assume Hendra transmits in the bat reservior population readily, and appears to have high transmission from horse-to-horse.
+ No evidence of human-to-human transmission -->
+
+        <!-- Strictly speaking infection corresponds to branching events
+         and here it only happens within each deme -->
+	    <reactionGroup spec="ReactionGroup" reactionGroupName="Infection"> 
+            <reaction spec="Reaction" reactionName="Birth.Bat" rate="7.5">
+                I[0] -> I[0] + I[0]
+            </reaction>
+	        <reaction spec="Reaction" reactionName="Birth.Horse" rate="5">
+                I[1] -> I[1] + I[1]
+            </reaction>
+            <reaction spec="Reaction" reactionName="Birth.Human" rate="0.001">
+                I[2] -> I[2] + I[2]
+        	</reaction>
+	    </reactionGroup>
+	    
+<!-- Hendra spills over from bats to horses yearly, and often spills over from from horses to humans. No known spillover from bats 
+directly to huans, or spill-back from horses to bats, humans to horses or humans to bats -->
+
+	    
+	    <!-- Migration here is a type change, but no branching. For example, animal infecting human or human infecting animal -->
+	    <reactionGroup spec="ReactionGroup" reactionGroupName="Migration"> 
+	        <reaction spec="Reaction" reactionName="MigrationBat.Horse" rate="1.75"> 
+			    I[0] -> I[1]
+	        </reaction>
+	        <reaction spec="Reaction" reactionName="MigrationHorse.Human" rate="2.5">
+			    I[1] -> I[2]
+	        </reaction>
+	        <reaction spec="Reaction" reactionName="MigrationHuman.Bat" rate="0.001">
+			    I[2] -> I[0]
+	        </reaction>
+	         <reaction spec="Reaction" reactionName="MigrationHuman.Horse" rate="0.001">
+			    I[2] -> I[1]
+	        </reaction>
+	        <reaction spec="Reaction" reactionName="MigrationHorse.Bat" rate="0.001">
+			    I[1] -> I[0]
+	        </reaction>
+	    </reactionGroup>
+	    
+        <reactionGroup spec="ReactionGroup" reactionGroupName="Removed">
+            <reaction spec="Reaction" reactionName="Death.Bat" rate="0.17">
+                I[0] -> R[0]
+            </reaction>
+            <reaction spec="Reaction" reactionName="Death.Horse" rate="0.17">
+                I[1] -> R[1]
+            </reaction>
+            <reaction spec="Reaction" reactionName="Death.Human" rate="0.17">
+                I[2] -> R[2]
+            </reaction>
+        </reactionGroup>
+	    
+        <reactionGroup spec="ReactionGroup" reactionGroupName="Sampling">
+            <reaction spec="Reaction" reactionName="Sampling.Bat" rate="0.17">
+                I[0] -> I_sampled[0]
+            </reaction>
+	        <reaction spec="Reaction" reactionName="Sampling.Horse" rate="0.17">
+                I[1] -> I_sampled[1]
+            </reaction>
+              <reaction spec="Reaction" reactionName="Sampling.Human" rate="0.17">
+                I[2] -> I_sampled[2]
+            </reaction>
+        </reactionGroup>
+    </model>
+
+    <initialState spec="InitState">
+	    <lineageSeed spec="Individual">
+	        <population spec="Population" type="@I" location="0"/>
+	    </lineageSeed>
+        <populationSize spec="PopulationSize" size="0">
+            <population spec="Population" type="@I" location="1"/>
+        </populationSize>
+        <populationSize spec="PopulationSize" size="0">
+            <population spec="Population" type="@I" location="2"/>
+        </populationSize>
+        <populationSize spec="PopulationSize" size="0">
+            <population spec="Population" type="@R" location="0"/>
+        </populationSize>
+        <populationSize spec="PopulationSize" size="0">
+            <population spec="Population" type="@R" location="1"/>
+        </populationSize>
+        <populationSize spec="PopulationSize" size="0">
+            <population spec="Population" type="@R" location="2"/>
+        </populationSize>
+        <populationSize spec="PopulationSize" size="0">
+            <population spec="Population" type="@I_sampled" location="0"/>
+        </populationSize>
+        <populationSize spec="PopulationSize" size="0">
+            <population spec="Population" type="@I_sampled" location="1"/>
+        </populationSize>
+        <populationSize spec="PopulationSize" size="0">
+        	<population spec="Population" type="@I_sampled" location="2"/>
+        </populationSize>
+        
+        
+    </initialState>
+
+	<lineageEndCondition spec="LineageEndCondition" nLineages="1000" isRejection="false">
+	  <population spec="Population" type="@I" location="0"/>
+	  <population spec="Population" type="@I" location="1"/>
+	  <population spec="Population" type="@I" location="2"/>
+	</lineageEndCondition>
+	
+	<!--inheritancePostProcessor spec='LineageFilter' reactionName="Sampling">
+	 </inheritancePostProcessor-->
+	
+	<inheritancePostProcessor spec="LineageFilter"
+				  reactionName="NONE" discard="true"/>
+	<output spec="NexusOutput" fileName="OUTPUT_FILE_NAME.nexus.tree"/>
+    <output spec="NewickOutput" fileName="OUTPUT_FILE_NAME.newick.tree" collapseSingleChildNodes="true"/>
+	<output spec="JsonOutput" fileName="OUTPUT_FILE_NAME.json"/>
+    </run>
+</beast>
