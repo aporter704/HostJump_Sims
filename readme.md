@@ -42,8 +42,10 @@
     
     Using just alignment and dates: iqtree -s ALIGNMENT_FILE --date DATE_FILE(tab delimited)  
 
-    Using alignment, dates and ML tree: iqtree -s ALIGNMENT_FILE --date DATE_FILE(tab delimited) -te TREE_FILE
+    Using alignment, dates and ML tree: iqtree -s ALIGNMENT_FILE --date DATE_FILE(tab delimited) -te TREE_FILE 
     
+    
+    --date-options -r a  -l
     Calculating CIs: --date-ci 100(resampling branch lengths 100 times) 
     Estimating root: -r a
     Extracting dates from taxon name after final "|" delimiter:  --date TAXNAME
