@@ -28,3 +28,23 @@
   Potential implementations:
   	- sample migration rate from animal[1] to human[2] from U[a, b] -> MIGRATE ----> **python script 1**
     - consider merging removed and sampled compartments, because we will do sampling posthoc.
+    
+    
+    Rates and genome length:
+    
+    MPXV: 197,417 bp, 1e-5
+    SARS-CoV-2: 29,850 bp, 9e-4 
+    Ebola: 19,000 bp , 1.2e-3 
+    HeV: 18,000bp, 6.5e-4 
+    
+    
+    IQ-tree 2.0.3 & LSD2
+    
+    Using just alignment and dates: iqtree -s ALIGNMENT_FILE --date DATE_FILE(tab delimited)  
+
+    Using alignment, dates and ML tree: iqtree -s ALIGNMENT_FILE --date DATE_FILE(tab delimited) -te TREE_FILE
+    
+    Calculating CIs: --date-ci 100(resampling branch lengths 100 times) 
+    Estimating root: -r a
+    Extracting dates from taxon name after final "|" delimiter:  --date TAXNAME
+    
