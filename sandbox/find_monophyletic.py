@@ -20,21 +20,24 @@ label = args.l
 target_type = label
 tree = dp.Tree.get_from_path(tree_file_name, tree_format)
 
+for i in tree.leaf_node_iter():
+    i.taxon.label = re.sub('^_|^ |_$| $', '', i.taxon.label)
+
 def check_monophyly(node, target_type):
     tip_types = []
     tips = []
     for i in node.leaf_iter():
         tips.append(i)
-        tip_types.append(re.split('_', i.taxon.label)[1])
+        tip_types.append(re.split('_| ', i.taxon.label)[1])
     return( [all([j == target_type for j in tip_types]), tips] )
 
 monophyletic_nodes = []
 all_imports = []
 visited_tips = []
 for tip in tree.leaf_node_iter():
-    # if tip in visited_tips:
+    if tip in visited_tips:
         continue
-    if(re.split('_', tip.taxon.label)[1] == target_type):
+    if(re.split('_| ', tip.taxon.label)[1] == target_type):
         monophyletic_ancestors = []
         for ancestor in tip.ancestor_iter():
             is_monophyletic = check_monophyly(ancestor, target_type) 

@@ -10,24 +10,12 @@
 		- ~~add sampling times to tip labels~~
 		- ~~A script to pull putative importation events based on monophyletic groups!~~ 
 	- simulate sequence data...
-	**workflow up to here**
 	- prune tips with removed reaction irrespective of location and export tree (constant sampling); use newick tree
 	- prune tips with removed reaction for location 1 (humans) and all location 0 before first human sample. thereafter prune location 0 with some probability; use newick tree
 	- prune sequence data set accordingly
 	- estimate ml trees in iqtree
 	- fit clock 
-	- **Revise steps below**
-	- prune tips tips with removed reaction location 1?
-	- sample humans[2] with some rate REFID_2host_m12_MIGRATE_2pHUMANSAMPRATE.tree ---> **python script 2**
-	  - 4.1 sample reservoir with constant rate U[0.01, 0.5] REFID_2host_m12_MIGRATE_2pHUMANSAMPRATE_1pconst_RESERVOIRCONSTANTRATE.tree
-		- 4.2 sample reservoir after 1st human U[0.01, 0.05] REFID_2host_m12_MIGRATE_2pHUMANSAMPRATE_1pskyline_RESERVOIRAFTERHUMANRATE.tree
-	- 5. simulate sequences for 4. and then subsample for 4.1 and 4.2 ----> **shell command + R**
-	- 6. estimate trees 4.1 and 4.2 ----> **shell command**
-	- 7. for all trees calculate: number of imports | tmrca of first human import | tmrca of tree ---> **Rscript invoking dendropy for master tree. Can be done posthoc** 
-
-  Potential implementations:
-  	- sample migration rate from animal[1] to human[2] from U[a, b] -> MIGRATE ----> **python script 1**
-    - consider merging removed and sampled compartments, because we will do sampling posthoc.
+	- 7. for all trees calculate: number of imports | tmrca of first human import (branching off) | age of first human sample (age of first tip) | tmrca of tree ---> THIS NEEDS TO BE EDITED IN find_monophyletic.py 
     
     
     Rates and genome length:
