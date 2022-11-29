@@ -84,11 +84,11 @@ tips_to_remove = []
 for i in range(tip_ages.shape[0]):
     if tip_ages.date[i] < first_human_case:
         tips_to_remove.append(tip_ages.tip_label[i])
-        print('Prunning (opportunistic)'+tip_ages.tip_label[i])
+        print('Prunning (opportunistic) '+tip_ages.tip_label[i])
     elif tip_ages.type[i] != location_human and tip_ages.date[i] >= first_human_case:
         if np.random.binomial(1, non_human_sampling_prop_high) == 0:
             tips_to_remove.append(tip_ages.tip_label[i])
-            print('Prunning  (opportunistic)'+tip_ages.tip_label[i])
+            print('Prunning (opportunistic) '+tip_ages.tip_label[i])
             
 tree_opportunistic_sampling = tree.clone(depth = 1)
 tree_opportunistic_sampling.prune_taxa_with_labels(tips_to_remove)
@@ -96,4 +96,13 @@ tree_opportunistic_sampling.write_to_path(re.sub('.nexus.tree', '_prunedOppSamp.
 
 aln_opportunistic_sampling = alignment.clone(depth = 1)
 prune_alignment(aln_opportunistic_sampling, tips_to_remove).write_to_path(re.sub('.fasta', '_prunedOppSamp.fasta', aln_file_name), 'fasta')
+print('Output files')
 
+print(re.sub('.nexus.tree', '_prunedHighSamp.nexus.tree', tree_file_name))
+print(re.sub('.fasta', '_prunedHighSamp.fasta', aln_file_name))
+
+print(re.sub('.nexus.tree', '_prunedLowSamp.nexus.tree', tree_file_name))
+print(re.sub('.fasta', '_prunedLowSamp.fasta', aln_file_name))
+
+print(re.sub('.nexus.tree', '_prunedOppSamp.nexus.tree', tree_file_name))
+print(re.sub('.fasta', '_prunedOppSamp.fasta', aln_file_name))

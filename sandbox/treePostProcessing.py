@@ -7,7 +7,6 @@ import re, sys, os
 import pandas as pd
 import argparse
 
-seqGen_path = '~/phyloApps/Seq-Gen-1.3.4/source/seq-gen'
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-t', '--t', help = 'the nexus tree from MASTER with annotations', required = True)
