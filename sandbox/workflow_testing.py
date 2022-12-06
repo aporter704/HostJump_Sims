@@ -45,7 +45,10 @@ for i in replicates[:1]:
         os.system('./make_lsd_dates.py -s '+aln)
         os.system(re.sub('DATE_ALN_NAME', re.sub('.fasta', '.date', aln), re.sub('SEQ_ALN_NAME', aln+'.treefile', lsd_command))) # Run lsd
         # capture lsd output and store in variable
-        estimated_trees.append(aln+'.treefile.result.nexus')
+        estimated_trees.append(aln+'.treefile.result.date.nexus')
+
+# The estimated trees file names are stored in estimated_trees, and the other ones in variables above
+
 
     imports_sim_tree = os.popen('./find_monophyletic.py -t '+sim_tree_file+' -f nexus -l type1').readlines()[1]
     
