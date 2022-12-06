@@ -31,30 +31,34 @@ def check_monophyly(node, target_type):
         tip_types.append(re.split('_| ', i.taxon.label)[1])
     return( [all([j == target_type for j in tip_types]), tips] )
 
-monophyletic_nodes = []
-all_imports = []
 visited_tips = []
+importation_nodes = []
 for tip in tree.leaf_node_iter():
-    if tip in visited_tips:
-        continue
-    if(re.split('_| ', tip.taxon.label)[1] == target_type):
-        monophyletic_ancestors = []
+    if(len(re.findall(target_type, tip.taxon.label)) > 0):
+        if(tip in visited_tips):
+            continue
+        else:
+        ancestors_of_tip = []
         for ancestor in tip.ancestor_iter():
-            is_monophyletic = check_monophyly(ancestor, target_type) 
-            if is_monophyletic[0]:
-                monophyletic_ancestors.append(ancestor)
-                for child_tip in is_monophyletic[1]:
-                    visited_tips.append(child_tip)
-            else:
-                all_imports.append(ancestor)# Because we want to count singletons too!
-                visited_tips.append(tip)
+            is_monophyletic = check_monophyly(ancestor, target_type=target_type)
+            ancestors_of_tip.append(ancestor)
+            if(not is_monophyletic[0]):
+                most_recent_decendants = check_monophyly(ancestors_of_tip[len(ancestors_of_tip)-2], target_type=target_type)[1]
+                [visited_tips.append(i) for i in most_recent_decendants]
+                importation_nodes.append(ancestor)
                 break
-        if len(monophyletic_ancestors) > 0:
-            oldest_monophyletic_ancestor = monophyletic_ancestors[-1] 
-            if not (oldest_monophyletic_ancestor in monophyletic_nodes):
-                monophyletic_nodes.append(oldest_monophyletic_ancestor)
-        
-print('The number of monophyletic groups including singletons is:')
-print(len(all_imports))
-print('The number of monophyletic groups excluding singletons is:')
-print(len(monophyletic_nodes))
+
+
+importation_ages = [i.distance_from_root() for i in importation_nodes]
+
+print('The number of importation events is:')
+len(importation_nodes)
+print('The age of the first importation is:')
+np.min(importation_ages)
+print('The first imported sample was collected in:')
+# Pending
+print('The age of the tree is:')
+
+
+#for all trees calculate: ~~number of imports~~ | ~~tmrca of first human import (branching off)~~ | 
+# ~~age of first human sample (age of first tip)~~ | tmrca of tree
