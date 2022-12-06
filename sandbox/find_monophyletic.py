@@ -48,6 +48,8 @@ for tip in tree.leaf_node_iter():
                 importation_nodes.append(ancestor)
                 break
 
+tip_ages = [i.distance_from_root() for i in visited_tips]
+
 
 importation_ages = [i.distance_from_root() for i in importation_nodes]
 
@@ -56,9 +58,7 @@ len(importation_nodes)
 print('The age of the first importation is:')
 np.min(importation_ages)
 print('The first imported sample was collected in:')
-# Pending
+np.min(tip_ages)
 print('The age of the tree is:')
+np.max(tip_ages)
 
-
-#for all trees calculate: ~~number of imports~~ | ~~tmrca of first human import (branching off)~~ | 
-# ~~age of first human sample (age of first tip)~~ | tmrca of tree
