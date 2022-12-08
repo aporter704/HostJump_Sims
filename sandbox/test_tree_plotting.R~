@@ -1,0 +1,3 @@
+library(NELSI)
+
+tr <- read.nexus('set1_MPXV_common_r0_nMig16_migAge0.19_splitAge1.91.nexus.tree')

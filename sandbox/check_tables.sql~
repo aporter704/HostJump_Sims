@@ -1,0 +1,7 @@
+.tables
+
+.headers ON
+
+.schema set_test_template_r0;
+
+SELECT * FROM set_test_template_r0;

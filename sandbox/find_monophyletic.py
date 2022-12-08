@@ -17,6 +17,18 @@ tree_file_name = args.t
 tree_format = args.f
 label = args.l
 
+check_lines = open(tree_file_name).readlines()
+if len(check_lines) <= 2 and tree_format == 'nexus':
+    print('The age of the tree is:')
+    print('\'NA\'')
+    print('The number of importation events is:')
+    print('\'NA\'')
+    print('The age of the first importation is:')
+    print('\'NA\'')
+    print('The first imported sample was collected in:')
+    print('\'NA\'')    
+    raise SystemExit()
+
 target_type = label
 tree = dp.Tree.get_from_path(tree_file_name, tree_format)
 
@@ -37,7 +49,6 @@ for tip in tree.leaf_node_iter():
     if(len(re.findall(target_type, tip.taxon.label)) > 0):
         if(tip in visited_tips):
             continue
-        else:
         ancestors_of_tip = []
         for ancestor in tip.ancestor_iter():
             is_monophyletic = check_monophyly(ancestor, target_type=target_type)
@@ -53,12 +64,12 @@ tip_ages = [i.distance_from_root() for i in visited_tips]
 
 importation_ages = [i.distance_from_root() for i in importation_nodes]
 
-print('The number of importation events is:')
-len(importation_nodes)
-print('The age of the first importation is:')
-np.min(importation_ages)
-print('The first imported sample was collected in:')
-np.min(tip_ages)
 print('The age of the tree is:')
-np.max(tip_ages)
+print(np.max(tip_ages))
+print('The number of importation events is:')
+print(len(importation_nodes))
+print('The age of the first importation is:')
+print(np.min(importation_ages))
+print('The first imported sample was collected in:')
+print(np.min(tip_ages))
 

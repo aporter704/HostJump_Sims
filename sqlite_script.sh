@@ -1,4 +1,3 @@
-
 #accessing sqlite3 in python
 import sqlite3
 
@@ -11,7 +10,7 @@ cur = con.cursor()
 #create database table to store **TABLE NAME**, called "**TABLE NAME**"
 #columns include X, Y, Z
 
-cur.execute("CREATE TABLE **TABLE NAME**(tree_name, tmrca, jumps)")
+cur.execute("CREATE TABLE **TABLE NAME**(tree_name, tmrca, jumps, first_migration_age)")
 
 #verify table has been made, should return "true" if created, "none" if something went wrong
 

@@ -1,0 +1,3 @@
+.tables
+
+SELECT * FROM set_test_template_r0;
