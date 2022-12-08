@@ -1,0 +1,95 @@
+<!-- Example of a two deme system with infection within demes (branching), migration 
+    and removal and sampling rates speciic to each deme.
+-->
+
+<beast version="2.0" namespace="master:master.model:master.steppers:master.conditions:master.postprocessors:master.outputs">
+    <run spec="InheritanceTrajectory" samplePopulationSizes="true"
+	 verbosity="3" simulationTime="15">
+
+<!--EBOV human and reservoir animal population, outbreaks occur every decade (longer sim time!)-->
+
+        <model spec="Model" id="model">
+            <populationType spec="PopulationType" typeName="I" id="I" dim="2"/> <!-- Infected population with two demes (e.g. animal reservoir and human)-->
+            <populationType spec="PopulationType" typeName="R" id="R" dim="2"/> <!-- Removed population with two demes -->
+            <populationType spec="PopulationType" typeName="I_sampled" id="I_sampled" dim="2"/> <!-- sampled population with two demes-->
+
+<!--Become uninfectious rate = death + sampling = 1
+	Migration rate is x times more than become uninfectious rate
+	Branching within deme is x times more than uninfectious rate
+	All rates are 1/time -->
+
+<!--EBOV is ubiquitous within the reservior population, and is very transmissible within the human population, 
+but has jumped the species barrier once every few years (roughly once every 10 infections) and has rare spill-back (no evidence thus far)-->
+
+        <!-- Strictly speaking infection corresponds to branching events
+         and here it only happens within each deme -->
+	    <reactionGroup spec="ReactionGroup" reactionGroupName="Infection"> 
+            <reaction spec="Reaction" reactionName="Birth1" rate="5">
+                I[0] -> I[0] + I[0]
+            </reaction>
+	        <reaction spec="Reaction" reactionName="Birth2" rate="4.5">
+                I[1] -> I[1] + I[1]
+            </reaction>
+	    </reactionGroup>
+	    <!-- Migration here is a type change, but no branching. For example, animal infecting human or human infecting animal -->
+	    <reactionGroup spec="ReactionGroup" reactionGroupName="Migration"> 
+	        <reaction spec="Reaction" reactionName="Migration0to1" rate="0.4">
+			    I[0] -> I[1]
+	        </reaction>
+	        <reaction spec="Reaction" reactionName="Migration1to0" rate="0.05">
+			    I[1] -> I[0]
+	        </reaction>
+	    </reactionGroup>
+	    
+        <reactionGroup spec="ReactionGroup" reactionGroupName="Removed">
+            <reaction spec="Reaction" reactionName="Death0" rate="0.25">
+                I[0] -> R[0]
+            </reaction>
+            <reaction spec="Reaction" reactionName="Death1" rate="0.25">
+                I[1] -> R[1]
+            </reaction>
+        </reactionGroup>
+	    
+        <reactionGroup spec="ReactionGroup" reactionGroupName="Sampling">
+            <reaction spec="Reaction" reactionName="Sampling0" rate="0.25">
+                I[0] -> I_sampled[0]
+            </reaction>
+	        <reaction spec="Reaction" reactionName="Sampling1" rate="0.25">
+                I[1] -> I_sampled[1]
+            </reaction>
+        </reactionGroup>
+    </model>
+
+    <initialState spec="InitState">
+	    <lineageSeed spec="Individual">
+	        <population spec="Population" type="@I" location="0"/>
+	    </lineageSeed>
+        <populationSize spec="PopulationSize" size="0">
+            <population spec="Population" type="@I" location="1"/>
+        </populationSize>
+        <populationSize spec="PopulationSize" size="0">
+            <population spec="Population" type="@R" location="0"/>
+        </populationSize>
+        <populationSize spec="PopulationSize" size="0">
+            <population spec="Population" type="@R" location="1"/>
+        </populationSize>
+        <populationSize spec="PopulationSize" size="0">
+            <population spec="Population" type="@I_sampled" location="0"/>
+        </populationSize>
+        <populationSize spec="PopulationSize" size="0">
+            <population spec="Population" type="@I_sampled" location="1"/>
+        </populationSize>
+    </initialState>
+
+	<lineageEndCondition spec="LineageEndCondition" nLineages="1000" isRejection="false">
+	  <population spec="Population" type="@I" location="0"/>
+	  <population spec="Population" type="@I" location="1"/>
+	</lineageEndCondition>
+	
+	<inheritancePostProcessor spec="LineageFilter"
+				  reactionName="NONE" discard="true"/>
+	<output spec="NexusOutput" fileName="MPXV_common_r1_0.nexus.tree"/>
+    <output spec="NewickOutput" fileName="MPXV_common_r1_0.newick.tree" collapseSingleChildNodes="true"/>
+	<output spec="JsonOutput" fileName="MPXV_common_r1_0.json"/>
+    </run>
+</beast>
