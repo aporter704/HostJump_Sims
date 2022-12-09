@@ -7,6 +7,7 @@ import re, sys, os
 import pandas as pd
 import argparse
 
+
 parser = argparse.ArgumentParser()
 parser.add_argument('-t', '--t', help = 'the nexus tree from MASTER with annotations', required = True)
 parser.add_argument('-lh', '--lh', help = 'the location for the human deme', required = True)
@@ -15,7 +16,8 @@ parser.add_argument('-gl', '--gl', help = 'length of genome/sequence to generate
 parser.add_argument('-seqGen', '--seqGen', help = 'path to SegGen for simulating sequences', required = True)
 
 # Might not neeed this one if subsampling is done by a different script
-parser.add_argument('-pnh', '--pnh', help = 'the probability of sampling non human cases after first human case', required = False)
+parser.add_argument('-pnh', '--pnh', help = 'the probability of sampling non human cases after first human casea', required = False)
+
 
 args = parser.parse_args()
 
@@ -25,6 +27,8 @@ clock_rate = args.rc
 genome_size = args.gl
 seqGen_path = args.seqGen
 psamp_after_first_human = 0.8
+
+
 
 tree = dp.Tree.get_from_path(tree_file_name, 'nexus')
 

@@ -4,7 +4,7 @@
 
 <beast version="2.0" namespace="master:master.model:master.steppers:master.conditions:master.postprocessors:master.outputs">
     <run spec="InheritanceTrajectory" samplePopulationSizes="true"
-	 verbosity="3" simulationTime="15">
+	 verbosity="3"> <!--simulationTime="15"-->
 
 <!--EBOV human and reservoir animal population, outbreaks occur every decade (longer sim time!)-->
 
@@ -81,15 +81,22 @@ but has jumped the species barrier once every few years (roughly once every 10 i
         </populationSize>
     </initialState>
 
+    <!--populationEndCondition spec='PopulationEndCondition'
+                            threshold='3'
+                            exceedCondition='true'
+                            isRejection='true'>
+      <population spec="Population" type="@I" location="1"/>
+    </populationEndCondition-->
+    
 	<lineageEndCondition spec="LineageEndCondition" nLineages="1000" isRejection="false">
 	  <population spec="Population" type="@I" location="0"/>
-	  <population spec="Population" type="@I" location="1"/>
+	      <population spec="Population" type="@I" location="1"/>
 	</lineageEndCondition>
 	
 	<inheritancePostProcessor spec="LineageFilter"
 				  reactionName="NONE" discard="true"/>
 	<output spec="NexusOutput" fileName="OUTPUT_FILE_NAME.nexus.tree"/>
-    <output spec="NewickOutput" fileName="OUTPUT_FILE_NAME.newick.tree" collapseSingleChildNodes="true"/>
+	<output spec="NewickOutput" fileName="OUTPUT_FILE_NAME.newick.tree" collapseSingleChildNodes="true"/>
 	<output spec="JsonOutput" fileName="OUTPUT_FILE_NAME.json"/>
     </run>
 </beast>

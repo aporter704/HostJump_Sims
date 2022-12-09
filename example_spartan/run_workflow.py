@@ -13,14 +13,14 @@ template = 'final_MPXV_speciesjump_common.xml' # template for running simulation
 args = parser.parse_args()
 prefix = args.pre # the prefix for output files
 
-beast_path = '~/phyloApps/beast2.6.3/bin/beast' # Path to beast
-seqgen_path = '~/phyloApps/Seq-Gen-1.3.4/source/seq-gen' # path to seq-gen
-clock_rate = '1e-5' # clock rate in subs/site/unit time
-genome_size = '197417' # genome size in nt
-iqtree_path = '~/phyloApps/iqtree-2.1.3-Linux/bin/iqtree2' # path to iqtree 
-lsd_path = '~/phyloApps/lsd-0.3beta/bin/lsd_unix' # path to lsd
+beast_path = 'beast' # Path to beast
+seqgen_path = '/data/gpfs/projects/punim1405/species_jumps/Seq-Gen-1.3.4/source/seq-gen' # path to seq-gen
+clock_rate = '1e-5' #1e-5 clock rate in subs/site/unit time
+genome_size = '197417' #197417 genome size in nt
+iqtree_path = 'iqtree2' # path to iqtree 
+lsd_path = '/data/gpfs/projects/punim1405/species_jumps/lsd-0.3beta/bin/lsd_unix' # path to lsd
 target_type = 'type1' # type label to match. In tree_post_processing.py we match the 'location' tag
-database_name = 'test_template_results.db'
+database_name = '/data/gpfs/projects/punim1405/species_jumps/MPXV_results.db'
 
 replicate_xml = open(template, 'r').read()
 output_name = prefix
@@ -147,3 +147,5 @@ estimated_opp_sampling_tree_stats
 cur.execute('INSERT INTO '+table_name+' VALUES ('+'\'estimated_opp_sampling_tree\','+estimated_opp_sampling_tree_stats+')')
 con.commit()
 
+# Clean up:
+os.system('rm '+prefix+'*')
