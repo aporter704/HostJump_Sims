@@ -1,5 +1,11 @@
 # Species jump project and to do list:
 
+#### To do (12 Jan 2023)
+- Fix the HeV analyses.
+  - find_monophyletic.py needs to find type2,which is human, not type 1.
+  - in tree_post_processing.py we need to find migration into type2, not type1.
+  - and add stats for the horse as well
+
 ### Also check to do list on /sandbox
 - workflow example for sars-cov-2:
 	- make xml and name it something like REFID_2host_m12_MIGRATE.xml
