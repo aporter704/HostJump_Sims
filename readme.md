@@ -1,5 +1,9 @@
 # Species jump project and to do list:
 
+#### Notes 17 Jan
+- fixed bug in HeV. Saved in HPC in retest_HeV/
+- Need to use the code from the folder above and rerun rare and common HeV
+
 #### To do (12 Jan 2023)
 - Fix the HeV analyses.
   - find_monophyletic.py needs to find type2,which is human, not type 1.
