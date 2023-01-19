@@ -51,6 +51,9 @@ directly to huans, or spill-back from horses to bats, humans to horses or humans
 	        <reaction spec="Reaction" reactionName="MigrationHorse.Bat" rate="0.001">
 			    I[1] -> I[0]
 	        </reaction>
+	        <reaction spec="Reaction" reactionName="MigrationBat.Human" rate="0.001">
+			    I[0] -> I[2]
+	        </reaction>
 	    </reactionGroup>
 	    
         <reactionGroup spec="ReactionGroup" reactionGroupName="Removed">
