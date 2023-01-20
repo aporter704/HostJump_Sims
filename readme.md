@@ -1,5 +1,13 @@
 # Species jump project and to do list:
 
+### Notes 20 Jan
+- Can we estimate the expected number of migration events for each model? - Yes we can! how?
+- Check simulations where the inferred number of jumps in simulated trees is very low ~1 or 0.
+- Re do Hendra simulations because they include the human -> bat rate
+- keep x y plots and calculate number of under and overestimates
+- Think about topological distance in estimated trees and number of jumps
+
+
 #### Notes 17 Jan
 - fixed bug in HeV. Saved in HPC in retest_HeV/
 - Need to use the code from the folder above and rerun rare and common HeV
