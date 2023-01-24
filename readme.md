@@ -6,6 +6,7 @@
 - Re do Hendra simulations because they include the human -> bat rate
 - keep x y plots and calculate number of under and overestimates
 - Think about topological distance in estimated trees and number of jumps
+- Include a "low" opportunistic sampling - maybe 0.05, 0.1?
 
 
 #### Notes 17 Jan
