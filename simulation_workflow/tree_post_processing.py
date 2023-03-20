@@ -15,8 +15,6 @@ parser.add_argument('-rc', '--rc', help = 'the clock rate in subs/site/time unit
 parser.add_argument('-gl', '--gl', help = 'length of genome/sequence to generate')
 parser.add_argument('-seqGen', '--seqGen', help = 'path to SegGen for simulating sequences', required = True)
 
-# Might not neeed this one if subsampling is done by a different script
-parser.add_argument('-pnh', '--pnh', help = 'the probability of sampling non human cases after first human casea', required = False)
 
 
 args = parser.parse_args()
